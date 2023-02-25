@@ -39,13 +39,17 @@ const {
 } = require("./controllers/_event");
 
 const { verifyToken } = require("./middleware");
+const { adminLogin, studentLogin } = require("./controllers/_auth");
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.post("/admin", addAdmin);
+app.post("/admin_login", adminLogin);
+app.post("/student_login", studentLogin);
+// app.get("/check_status", verifyToken);
 
-app.use(verifyToken);
+// app.use(verifyToken);
 
 // student routes
 app.post("/student", addStudent);

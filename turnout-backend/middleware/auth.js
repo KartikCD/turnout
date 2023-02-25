@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
+  console.log(req.url);
   const token =
     req.body.token ||
     req.query.token ||
@@ -14,10 +15,14 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, "TURNOUT");
     req.user = decoded;
+    if (req.url === "/check_status") {
+      return res.status(200).json({ message: "go ahead." });
+    } else {
+      return next();
+    }
   } catch (err) {
     return res.status(401).json({ message: "Invalid Token" });
   }
-  return next();
 };
 
 module.exports = {

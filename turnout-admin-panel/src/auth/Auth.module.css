@@ -1,0 +1,41 @@
+.formSignIn {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}

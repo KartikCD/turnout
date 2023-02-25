@@ -1,0 +1,29 @@
+.container {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.headingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.button {
+  background-color: #2d4ead;
+  color: white;
+  border: none;
+  padding: 10px 30px 10px 30px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  cursor: pointer;
+}
+
+.listContainer {
+  margin-top: 20px;
+}
