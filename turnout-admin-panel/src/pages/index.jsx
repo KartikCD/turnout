@@ -2,10 +2,15 @@ import * as React from "react";
 import styles from "./Home.module.css";
 import { AdminListItem } from "@/ui-components/_item/AdminListItem";
 import useHome from "./useHome";
+import { Auth } from "@/auth/Auth";
+import AuthContext from "@/context/AuthContext";
 
 const Home = React.memo(() => {
   const { data, errors, onAddClick } = useHome();
-
+  const authContext = React.useContext(AuthContext);
+  if (!authContext.isLoggedIn) {
+    return <Auth />;
+  }
   const listAdmins = React.useMemo(() => {
     return data?.data?.admins?.map((admin) => {
       return (
