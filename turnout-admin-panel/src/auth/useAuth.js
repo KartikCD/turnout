@@ -2,8 +2,10 @@ import restClient from "@/client/restClient";
 import { PATHS } from "@/paths";
 import { useRouter } from "next/router";
 import * as React from "react";
+import AuthContext from "@/context/AuthContext";
 
 export default function useAuth() {
+  const authContext = React.useContext(AuthContext);
   const router = useRouter();
   const [initialValues, _setInitialValues] = React.useState({
     email: "",
@@ -16,6 +18,7 @@ export default function useAuth() {
       const token = localStorage.getItem("token");
       if (token !== null || token !== undefined) {
         try {
+          authContext.setIsLoggedIn(true);
           setLogin((previousLoading) => ({
             ...previousLoading,
             isLoading: true,
@@ -55,15 +58,19 @@ export default function useAuth() {
     async (values) => {
       setError({ status: true, message: "" });
       try {
-        const {
-          data: {
-            admin: { token },
-          },
-        } = await restClient().post("/admin_login", values);
-        localStorage.setItem("token", token);
+        // {
+        //   data: {
+        //     admin: { token },
+        //   },
+        // }
+        const user = await restClient().post("/admin_login", values);
+        console.log(user);
+        localStorage.setItem("token", user.data.token);
+        authContext.setIsLoggedIn(true);
         setError({ status: false, message: "" });
         router.push(PATHS.ADMIN);
       } catch (error) {
+        console.log(error);
         setError({ status: true, message: error.response.data.message });
       }
     },

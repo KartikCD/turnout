@@ -14,7 +14,7 @@ const adminLogin = async (req, res) => {
 
       admin.token = token;
 
-      return res.status(200).json({ admin });
+      return res.status(200).json({ name: admin.name, token: admin.token, department: admin.department, email: admin.email  });
     }
     return res.status(400).json({ message: "Incorrect username or password." });
   } catch (err) {
