@@ -7,6 +7,10 @@
   margin-top: 24px;
 }
 
+.inputWithMargin {
+  margin: 8px 0;
+}
+
 .btn {
   display: block;
   padding-right: 0;

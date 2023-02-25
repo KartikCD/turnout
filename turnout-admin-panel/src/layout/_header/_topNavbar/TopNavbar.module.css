@@ -4,6 +4,7 @@
   display: flex;
   position: fixed;
   top: 1rem;
+  z-index: 1000;
 }
 .topNavbar .hamburger {
   width: 70px;

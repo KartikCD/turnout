@@ -6,7 +6,7 @@ import { Auth } from "@/auth/Auth";
 import AuthContext from "@/context/AuthContext";
 
 const Home = React.memo(() => {
-  const { data, errors, onAddClick } = useHome();
+  const { data, errors, onAddClick, onClick } = useHome();
   const authContext = React.useContext(AuthContext);
   if (!authContext.isLoggedIn) {
     return <Auth />;
@@ -23,7 +23,7 @@ const Home = React.memo(() => {
     <div className={styles.container}>
       <div className={styles.headingContainer}>
         <h3>Listing Admins</h3>
-        <button type="button" className={styles.button}>
+        <button type="button" className={styles.button} onClick={onClick}>
           Create Admin
         </button>
       </div>

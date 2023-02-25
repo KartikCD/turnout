@@ -1,9 +1,12 @@
 import restClient from "@/client/restClient";
+import { PATHS } from "@/paths";
+import { useRouter } from "next/router";
 import * as React from "react";
 
 export default function useHome() {
   const [data, setData] = React.useState(undefined);
   const [errors, setErrors] = React.useState({ error: false, message: "" });
+  const router = useRouter();
 
   const fetchAdmins = React.useCallback(async () => {
     try {
@@ -24,9 +27,14 @@ export default function useHome() {
     console.log(id);
   }, []);
 
+  const onClick = React.useCallback(() => {
+    router.push(PATHS.ADD_ADMIN);
+  }, [router]);
+
   return {
     data,
     errors,
     onAddClick,
+    onClick,
   };
 }
