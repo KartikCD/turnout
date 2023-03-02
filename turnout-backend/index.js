@@ -83,7 +83,9 @@ app.use("*", (_req, res) => {
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/turnout")
+  .connect(
+    "mongodb+srv://kartik:kartik1235@deepbluecluster.wnkfe.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     app.listen(5050);
     console.log("Service running on port 5050");

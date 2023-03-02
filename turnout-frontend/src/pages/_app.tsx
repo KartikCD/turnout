@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import useApp from "./useApp";
 import { Layout } from "@/application/Layout";
 import NextNProgress from "nextjs-progressbar";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const { theme } = useApp();
@@ -22,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<Layout>
 					{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 					<Component {...pageProps} />
-					{/* <ReactQueryDevtools initialIsOpen={false} /> */}
+					<ReactQueryDevtools initialIsOpen={false} />
 				</Layout>
 			</ThemeProvider>
 		</>
