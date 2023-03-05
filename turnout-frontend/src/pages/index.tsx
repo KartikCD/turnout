@@ -1,5 +1,5 @@
 import { WithEmptyList, WithError, WithLoading } from "@/util-components";
-import { Box, Grid, List, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import * as React from "react";
 import useHome from "./useHome";
 import ProgramListItem from "./_programListItem/ProgramListItem";
@@ -35,7 +35,10 @@ const Home = React.memo(() => {
 							}}>
 							Programs
 						</Typography>
-						<Grid sx={{ width: "100%" }} container spacing={2}>
+						<Grid
+							sx={{ width: "100%", marginTop: "8px", marginLeft: 0 }}
+							container
+							spacing={2}>
 							{listItems}
 						</Grid>
 					</Box>
