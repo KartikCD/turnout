@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import * as React from "react";
 import useHome from "./useHome";
 import ProgramListItem from "./_programListItem/ProgramListItem";
+import styles from "../styles/Home.module.css";
 
 const Home = React.memo(() => {
 	const { data, isLoading, isError, error, onProgramClick } = useHome();
@@ -35,12 +36,7 @@ const Home = React.memo(() => {
 							}}>
 							Programs
 						</Typography>
-						<Grid
-							sx={{ width: "100%", marginTop: "8px", marginLeft: 0 }}
-							container
-							spacing={2}>
-							{listItems}
-						</Grid>
+						<Box className={styles.program_container}>{listItems}</Box>
 					</Box>
 				</WithEmptyList>
 			</WithError>
