@@ -38,11 +38,15 @@ const {
   getEvents,
 } = require("./controllers/_event");
 
+const { addRegistration } = require("./controllers/_registrations");
+const { getNotifications } = require("./controllers/_notification");
+
 const { verifyToken } = require("./middleware");
 const { adminLogin, studentLogin } = require("./controllers/_auth");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.post("/admin", addAdmin);
 app.post("/admin_login", adminLogin);
@@ -77,6 +81,12 @@ app.get("/events", getEvents);
 app.get("/event/:id", getEvent);
 app.put("/event/:id", updateEvent);
 app.delete("/event/:id", deleteEvent);
+
+// registeration routes
+app.post("/registration", addRegistration);
+
+// notification routes
+app.get("/notifications/:id", getNotifications);
 
 app.use("*", (_req, res) => {
   return res.status(404).json({ error: "page not found." });

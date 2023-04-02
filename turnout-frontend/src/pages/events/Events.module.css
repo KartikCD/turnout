@@ -1,0 +1,26 @@
+.list {
+	width: 100%;
+}
+
+.program_container {
+	width: 100%;
+	display: grid;
+	column-gap: 16px;
+	margin-top: 8px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+}
+
+@media (max-width: 900px) {
+	.program_container {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 16px;
+	}
+}
+
+@media (max-width: 600px) {
+	.program_container {
+		column-gap: 0;
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

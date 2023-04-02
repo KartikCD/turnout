@@ -5,8 +5,10 @@ export interface Student {
 	password: string;
 	department: string;
 	image?: string;
-	_id: string;
+	_id?: string;
 	__v?: number;
+	newPassword?: string;
+	newConfirmPassword?: string;
 }
 
 export interface Students {
