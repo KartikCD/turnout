@@ -29,7 +29,6 @@ interface NavItemsProps {
 const NAV_ITEMS: Array<NavItemsProps> = [
 	{ title: "HOME", path: PATHS.HOME },
 	{ title: "UPDATES", path: PATHS.UPDATES },
-	{ title: "REGISTRATIONS", path: PATHS.REGISTRATIONS },
 	{ title: "PROFILE", path: PATHS.PROFILE },
 ];
 

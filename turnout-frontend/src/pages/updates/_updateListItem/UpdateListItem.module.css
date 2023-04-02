@@ -1,0 +1,47 @@
+.divContainer {
+	width: 100%;
+	transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2),
+		0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+	-webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-moz-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-ms-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-o-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	background-color: #fff;
+	color: #000;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	display: flex;
+	padding: 16px;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.date {
+	color: rgb(211, 78, 78);
+	font-weight: 600;
+	font-size: 18px;
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+.message {
+	font-size: 22px;
+	margin-block-start: 0;
+	margin-block-end: 0;
+	font-weight: 500;
+	line-height: 24px;
+}
+
+@media screen and (max-width: 600px) {
+	.date {
+		font-size: 16px;
+	}
+
+	.message {
+		font-size: 18px;
+	}
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box } from "@mui/material";
-import { QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Header } from "./_header/Header";
 import { Content } from "./_content/Content";
 import useLayout from "./useLayout";
