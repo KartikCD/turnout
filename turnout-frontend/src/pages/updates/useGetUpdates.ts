@@ -1,10 +1,7 @@
 import { useGetNotifications } from "@/queries/notifications/useGetNotifications";
-import * as React from "react";
 
-export default function useGetUpdates() {
-	const { data, isLoading, isError, error } = useGetNotifications(
-		"6428166899c9857e0041be6c"
-	);
+export default function useGetUpdates(studentId: string) {
+	const { data, isLoading, isError, error } = useGetNotifications(studentId);
 
 	return {
 		data,

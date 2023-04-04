@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "cron": "node cron.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -15,6 +16,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
     "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.2",
     "nodemailer": "^6.9.1"
   }
 }

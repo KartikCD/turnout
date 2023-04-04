@@ -14,6 +14,9 @@ const RegistrationSchema = mongoose.Schema({
     type: mongoose.ObjectId,
     required: true,
   },
+  sentEmail: {
+    type: Boolean,
+  },
 });
 
 const Registration = mongoose.model("Registration", RegistrationSchema);

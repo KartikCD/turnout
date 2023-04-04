@@ -9,6 +9,7 @@ export interface Student {
 	__v?: number;
 	newPassword?: string;
 	newConfirmPassword?: string;
+	token?: string;
 }
 
 export interface Students {

@@ -1,14 +1,13 @@
 import * as React from "react";
 import useChangePassword from "./useChangePassword";
-import useProgramId from "@/pages/events/useProgramId";
 import { WithError, WithLoading } from "@/util-components";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { Field, Form } from "react-final-form";
+import { getLoginUserId } from "@/util/getLoginUserId";
 
 const ChangePassword = React.memo(() => {
-	const id = useProgramId();
+	const studentId = getLoginUserId();
 	const {
-		data,
 		isLoading,
 		isError,
 		error,
@@ -17,7 +16,7 @@ const ChangePassword = React.memo(() => {
 		passwordValidator,
 		newPasswordValidator,
 		repeatPasswordValidator,
-	} = useChangePassword(id);
+	} = useChangePassword(studentId);
 
 	return (
 		<WithLoading loading={isLoading}>

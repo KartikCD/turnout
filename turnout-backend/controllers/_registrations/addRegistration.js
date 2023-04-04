@@ -31,7 +31,7 @@ const addRegistration = async (req, res) => {
             registration.eventName
           } on ${new Date().toDateString()}`,
           studentId: student._id,
-          date: `${new Date().toISOString()}`,
+          date: `${new Date(Date.now()).toISOString()}`,
         });
 
         await notification.save(notification);

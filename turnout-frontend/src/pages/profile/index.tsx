@@ -4,10 +4,12 @@ import useProfile from "./useProfile";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import styles from "./Profile.module.css";
+import { getLoginUserId } from "@/util/getLoginUserId";
 
 const Profile = React.memo(() => {
-	const { data, isLoading, isError, error, onUpdatePasswordClick } =
-		useProfile();
+	const studentId = getLoginUserId();
+	const { data, isLoading, isError, error, onUpdatePasswordClick, onLogout } =
+		useProfile(studentId);
 
 	return (
 		<WithLoading loading={isLoading}>
@@ -135,6 +137,7 @@ const Profile = React.memo(() => {
 								layout='fill'
 								objectFit='contain'
 								alt={data?.name as string}
+								onClick={onLogout}
 							/>
 						</Box>
 					</Box>

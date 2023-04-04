@@ -4,9 +4,11 @@ import useGetUpdates from "./useGetUpdates";
 import { WithEmptyList, WithError, WithLoading } from "@/util-components";
 import styles from "./Updates.module.css";
 import UpdateListItem from "./_updateListItem/UpdateListItem";
+import { getLoginUserId } from "@/util/getLoginUserId";
 
 const Updates = React.memo(() => {
-	const { data, isLoading, isError, error } = useGetUpdates();
+	const studentId = getLoginUserId();
+	const { data, isLoading, isError, error } = useGetUpdates(studentId);
 
 	const listItems = React.useMemo(() => {
 		return data?.map(notification => {

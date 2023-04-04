@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import { PATHS } from "@/paths";
 import styles from "./Header.module.css";
+import { useSession } from "next-auth/react";
 
 const drawerWidth = 240;
 
@@ -32,8 +33,11 @@ const NAV_ITEMS: Array<NavItemsProps> = [
 	{ title: "PROFILE", path: PATHS.PROFILE },
 ];
 
+const NAV_ITEMS_WITHOUT_LOGIN: Array<NavItemsProps> = [];
+
 export const Header: React.FC<Record<string, string>> = React.memo(() => {
 	const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
+	const { status } = useSession();
 
 	const container =
 		typeof window !== undefined ? () => window.document.body : undefined;
@@ -43,6 +47,15 @@ export const Header: React.FC<Record<string, string>> = React.memo(() => {
 	}, [setMobileOpen]);
 
 	const listWebOptions = React.useMemo(() => {
+		if (status === "unauthenticated") {
+			return NAV_ITEMS_WITHOUT_LOGIN.map(({ title, path }) => {
+				return (
+					<Link href={path} key={title} className={styles.link}>
+						<Button sx={{ color: "#000" }}>{title}</Button>
+					</Link>
+				);
+			});
+		}
 		return NAV_ITEMS.map(({ title, path }) => {
 			return (
 				<Link href={path} key={title} className={styles.link}>
@@ -50,7 +63,7 @@ export const Header: React.FC<Record<string, string>> = React.memo(() => {
 				</Link>
 			);
 		});
-	}, []);
+	}, [status]);
 
 	const listMobileOptions = React.useMemo(() => {
 		return NAV_ITEMS.map(({ title, path }) => {

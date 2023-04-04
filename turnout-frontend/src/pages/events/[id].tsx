@@ -6,15 +6,22 @@ import { Box, Typography } from "@mui/material";
 import styles from "./Events.module.css";
 import EventListItem from "./_eventListItem/EventListItem";
 import { AlertDialog, Severity } from "@/ui-components";
+import { getLoginUserId } from "@/util/getLoginUserId";
 
 const EventsList = React.memo(() => {
 	const id = useProgramId();
+	const studentId = getLoginUserId();
 	const { data, isLoading, error, isError, onRegisterClick, registrationData } =
 		useEventsList(id);
 	const listItems = React.useMemo(() => {
 		return data?.map(event => {
 			return (
-				<EventListItem key={event._id} event={event} onClick={onRegisterClick} />
+				<EventListItem
+					studentId={studentId}
+					key={event._id}
+					event={event}
+					onClick={onRegisterClick}
+				/>
 			);
 		});
 	}, [data, onRegisterClick]);
