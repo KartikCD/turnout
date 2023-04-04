@@ -40,6 +40,7 @@ export default function useChangePassword(id: string) {
 		async (values: Student) => {
 			if (values.newConfirmPassword !== values.newPassword) {
 				alert("Please new password and confirm password should match.");
+				return false;
 			}
 
 			let studentDetail: Student = {

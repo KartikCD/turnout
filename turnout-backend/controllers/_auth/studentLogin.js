@@ -19,7 +19,7 @@ const studentLogin = async (req, res) => {
 
       return res.status(200).json({ student });
     }
-    return res.status(400).json({ message: "Incorrect username or password." });
+    return res.status(401).json({ message: "Incorrect username or password." });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
