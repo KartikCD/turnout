@@ -1,15 +1,22 @@
 import { Event } from "@/models";
 import {
+	AppBar,
+	Box,
 	Button,
 	Card,
 	CardActionArea,
 	CardActions,
 	CardContent,
+	Dialog,
 	Grid,
+	IconButton,
+	Toolbar,
 	Typography,
 } from "@mui/material";
 import * as React from "react";
 import { Registration } from "@/models/_registrations/Registration";
+import Image from "next/image";
+import CloseIcon from '@mui/icons-material/Close'
 
 interface Props {
 	event: Event;
@@ -19,6 +26,7 @@ interface Props {
 
 const EventListItem: React.FC<Props> = React.memo(
 	({ event, onClick, studentId }) => {
+		const [isOpen, setIsOpen] = React.useState<boolean>(false);
 		const onButtonClick = React.useCallback(() => {
 			onClick({
 				eventId: event._id,
@@ -27,9 +35,18 @@ const EventListItem: React.FC<Props> = React.memo(
 			});
 		}, [onClick, event, studentId]);
 
+		const onModalOpen = React.useCallback(() => {
+			setIsOpen(true)
+		}, [setIsOpen])
+
+		const onModalClose = React.useCallback(() => {
+			setIsOpen(false);
+		}, [setIsOpen])
+
 		const date = new Date(event.date);
 
 		return (
+			<>
 			<Grid
 				item
 				lg={4}
@@ -164,6 +181,7 @@ const EventListItem: React.FC<Props> = React.memo(
 									padding: "8px",
 									fontSize: "10px",
 								}}
+								onClick={onModalOpen}
 								disabled={event.poster === "" ? true : false}>
 								View Poster
 							</Button>
@@ -186,6 +204,40 @@ const EventListItem: React.FC<Props> = React.memo(
 					</CardActions>
 				</Card>
 			</Grid>
+			<Dialog fullScreen open={isOpen} onClose={onModalClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+				{/* <Box sx={{ width: "90%", height: '90%', position: 'relative' }}>
+					<Image
+						src={`http://127.0.0.1:5050/uploads/event_files/${event.poster}`}
+						alt={event.name}
+						layout="fill"
+						objectFit="contain"
+					/>
+				</Box> */}
+				<AppBar sx={{ position: 'relative' }}>
+					<Toolbar>
+						<IconButton
+							edge="start"
+							color="inherit"
+							onClick={onModalClose}
+							aria-label="close"
+						>
+							<CloseIcon />
+						</IconButton>
+						<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+							Poster
+						</Typography>
+					</Toolbar>
+				</AppBar>
+				<Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
+					<Image
+						src={`http://127.0.0.1:5050/uploads/event_files/${event.poster}`}
+						alt={event.name}
+						layout="fill"
+						objectFit="contain"
+					/>
+				</Box>
+			</Dialog>
+			</>
 		);
 	}
 );

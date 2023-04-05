@@ -48,8 +48,6 @@ const EventForm = React.memo(({ initialValues, onSubmit, children }) => {
     }
   }, [])
 
-  console.log(initialValues)
-
   return (
     <div className={styles.container}>
       <Form
@@ -133,6 +131,10 @@ const EventForm = React.memo(({ initialValues, onSubmit, children }) => {
               placeholder="Event Contact Details"
               required
             />
+
+            <div>
+              <input type="file" onChange={(e) => { console.log(e.target.files) }} accept="image/*" />
+            </div>
 
             <button type="submit" className={styles.btn}>
               Submit
