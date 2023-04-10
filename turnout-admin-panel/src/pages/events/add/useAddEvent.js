@@ -50,7 +50,11 @@ export default function useAddEvent() {
   const onSubmit = React.useCallback(
     async (values) => {
       try {
-        const { data, status } = await restClient().post("/event", values);
+        const eventData = {
+          ...values,
+          date: new Date(values.date),
+        };
+        const { data, status } = await restClient().post("/event", eventData);
         if (status === 201) {
           router.push(PATHS.EVENT);
         } else {
