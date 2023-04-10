@@ -17,7 +17,7 @@
 ### how to run the project
 
 1. Open 4 terminals/cmd and cd to `project/turnout-backend` directory in 1 and cd to `turnout/turnout-admin-panel` directory in 2.
-   and cd to `turnout/turnout-admin-panel` and cd to `turnout/turnout-backend`
+   and cd to `turnout/turnout-frontend` and cd to `turnout/turnout-backend`
 
 2. `yarn` in all the terminals/cmd.
 3. then run `yarn dev` in all the cmd/terminals
