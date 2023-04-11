@@ -3,6 +3,7 @@ const { getProgram } = require("./getProgram");
 const { getPrograms } = require("./getPrograms");
 const { deleteProgram } = require("./deleteProgram");
 const { updateProgram } = require("./updateProgram");
+const { uploadProgramImage } = require("./uploadProgramImage");
 
 module.exports = {
   addProgram,
@@ -10,4 +11,5 @@ module.exports = {
   getPrograms,
   deleteProgram,
   updateProgram,
+  uploadProgramImage,
 };

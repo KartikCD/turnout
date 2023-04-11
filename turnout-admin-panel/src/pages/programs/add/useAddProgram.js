@@ -1,5 +1,6 @@
 import restClient from "@/client/restClient";
 import { PATHS } from "@/paths";
+import axios from "axios";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -15,11 +16,31 @@ export default function useAddProgram() {
   });
 
   const onSubmit = React.useCallback(
-    async (values) => {
+    async (values, files) => {
       try {
         const { data, status } = await restClient().post("/program", values);
+
         if (status === 201) {
-          router.push(PATHS.PROGRAM);
+          if (files !== undefined) {
+            let formData = new FormData();
+            formData.append("files", files);
+            const { data: programData, status: programStatus } =
+              await axios.post(
+                `http://localhost:5050/uploadProgramImage/${data.program._id}`,
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
+
+            if (programStatus === 200) {
+              router.push(PATHS.PROGRAM);
+            } else {
+              setError({ error: true, message: programData.message });
+            }
+          }
         } else {
           setError({ error: true, message: data.message });
         }

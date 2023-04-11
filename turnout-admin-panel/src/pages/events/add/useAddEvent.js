@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import restClient from "@/client/restClient";
 import { PATHS } from "@/paths";
+import axios from "axios";
 
 export default function useAddEvent() {
   const [initialValues, setInitialValues] = React.useState({
@@ -48,15 +49,35 @@ export default function useAddEvent() {
   }, [fetchPrograms]);
 
   const onSubmit = React.useCallback(
-    async (values) => {
+    async (values, files) => {
       try {
         const eventData = {
           ...values,
           date: new Date(values.date),
         };
         const { data, status } = await restClient().post("/event", eventData);
+        console.log(data);
         if (status === 201) {
-          router.push(PATHS.EVENT);
+          // router.push(PATHS.EVENT);
+          if (files !== undefined) {
+            let formData = new FormData();
+            formData.append("files", files);
+            const { data: uploadData, status: uploadStatus } = await axios.post(
+              `http://localhost:5050/uploadImage/${data.event._id}`,
+              formData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+
+            if (uploadStatus === 200) {
+              router.push(PATHS.EVENT);
+            } else {
+              setError({ error: true, message: uploadData.message });
+            }
+          }
         } else {
           setError({ error: true, message: data.message });
         }

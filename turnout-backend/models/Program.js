@@ -5,6 +5,9 @@ const ProgramSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  poster: {
+    type: String,
+  },
 });
 
 const Program = mongoose.model("Program", ProgramSchema);

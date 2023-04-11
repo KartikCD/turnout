@@ -30,6 +30,7 @@ const {
   addProgram,
   updateProgram,
   deleteProgram,
+  uploadProgramImage,
 } = require("./controllers/_program");
 
 // events
@@ -55,13 +56,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(fileUpload({
-  limits: {
-    fileSize: 10000000  ,
-  },
-  abortOnLimit: true
-}))
-app.use("/uploads", express.static(__dirname + '/uploads'));
+app.use(
+  fileUpload({
+    limits: {
+      fileSize: 10000000,
+    },
+    abortOnLimit: true,
+  })
+);
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.post("/admin", addAdmin);
 app.post("/admin_login", adminLogin);
@@ -89,10 +92,11 @@ app.get("/programs", getPrograms);
 app.get("/program/:id", getProgram);
 app.put("/program/:id", updateProgram);
 app.delete("/program/:id", deleteProgram);
+app.post("/uploadProgramImage/:id", uploadProgramImage);
 
-// event routes
+// event routess
 app.post("/event", addEvent);
-app.post("/uploadImage/:id", uploadImage) 
+app.post("/uploadImage/:id", uploadImage);
 app.get("/events", getEvents);
 app.get("/event/:id", getEvent);
 app.put("/event/:id", updateEvent);

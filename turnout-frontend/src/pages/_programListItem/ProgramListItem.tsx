@@ -48,7 +48,11 @@ const ProgramListItem: React.FC<Props> = React.memo(({ program, onClick }) => {
 					<CardMedia
 						component='img'
 						height='140'
-						image='/images/mu.png'
+						image={
+							program.poster !== ""
+								? `http://127.0.0.1:5050/uploads/program_files/${program.poster}`
+								: "/images/mu.png"
+						}
 						sx={{ padding: "8px", maxWidth: "100%", objectFit: "contain" }}
 						alt={program.name}
 					/>

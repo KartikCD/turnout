@@ -6,11 +6,17 @@ import { TextField } from "@/ui-components/_textField/TextField";
 import { DropdownContainer } from "@/util-components/DropdownContainer";
 
 const EventForm = React.memo(({ initialValues, onSubmit, children }) => {
+  const [files, setFiles] = React.useState();
+
   React.useEffect(() => {
     window.document.getElementById("date").min = new Date()
       .toISOString()
       .split("T")[0];
   }, []);
+
+  const onButtonClick = React.useCallback(async (values) => {
+    onSubmit(values, files[0])
+  }, [files, onSubmit])
 
   const nameValidator = React.useCallback(async (value) => {
     if (!value) {
@@ -53,7 +59,7 @@ const EventForm = React.memo(({ initialValues, onSubmit, children }) => {
       <Form
         keepDirtyOnReinitialize
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={onButtonClick}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <TextField
@@ -133,7 +139,7 @@ const EventForm = React.memo(({ initialValues, onSubmit, children }) => {
             />
 
             <div>
-              <input type="file" onChange={(e) => { console.log(e.target.files) }} accept="image/*" />
+              <input type="file" onChange={(e) => { console.log(e.target.files); setFiles(e.target.files) }} accept="image/*" />
             </div>
 
             <button type="submit" className={styles.btn}>
