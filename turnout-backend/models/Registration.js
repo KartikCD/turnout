@@ -8,7 +8,6 @@ const RegistrationSchema = mongoose.Schema({
   eventId: {
     type: mongoose.ObjectId,
     required: true,
-    unique: true,
   },
   studentId: {
     type: mongoose.ObjectId,
